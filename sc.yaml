@@ -1,0 +1,15 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: my-storage-class
+provisioner: kubernetes.io/aws-ebs # aws-ebs | gcp-pd | rbd | azure-disk | azure-file | portworx-volume | vsphere-volume | no-provisioner
+parameters: # type | fsType | encrypted | iopsPerGB | zones | replication-tye 
+  type: gp2 # io1 | io2 | gp2 | gp3
+  fsType: ext4
+  encrypted: "true"  
+  iopsPerGB: "10"   
+  zones: ap-northeast-1a # Can use multi zone seperate by comma
+  replication-type: none 
+reclaimPolicy: Delete # Delete | Retain | Snapshot
+allowVolumeExpansion: true # true or false
+volumeBindingMode: WaitForFirstConsumer # WaitForFirstConsumer | Immediate
