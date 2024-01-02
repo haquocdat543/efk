@@ -59,19 +59,23 @@ spec:
         effect: NoSchedule
       containers:
       - name: fluentd
-        image: fluent/fluentd-kubernetes-daemonset:v1.4.2-debian-elasticsearch-1.1
+        image: fluent/fluentd-kubernetes-daemonset:v1.11.5-debian-elasticsearch7-1.1
         env:
           - name:  FLUENT_ELASTICSEARCH_HOST
-            value: "elasticsearch.kube-logging.svc.cluster.local"
+            value: "10.0.2.15"
           - name:  FLUENT_ELASTICSEARCH_PORT
             value: "9200"
           - name: FLUENT_ELASTICSEARCH_SCHEME
             value: "http"
           - name: FLUENTD_SYSTEMD_CONF
             value: disable
+          - name: FLUENT_CONTAINER_TAIL_EXCLUDE_PATH
+            value: /var/log/containers/fluent*
+          - name: FLUENT_CONTAINER_TAIL_PARSER_TYPE
+            value: /^(?<time>.+) (?<stream>stdout|stderr)( (?<logtag>.))? (?<log>.*)$/
         resources:
           limits:
-            memory: 512Mi
+            memory: 1024Mi
           requests:
             cpu: 100m
             memory: 200Mi
