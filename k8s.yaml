@@ -152,9 +152,9 @@ Resources:
         Ref: EKSCluster
       NodeRole: !GetAtt nodeGroup.Arn 
       ScalingConfig:
-        MinSize: 3
-        DesiredSize: 5
-        MaxSize: 7
+        MinSize: 1
+        DesiredSize: 3
+        MaxSize: 3
       Labels:
         Key1: Value1
         Key2: Value2
