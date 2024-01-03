@@ -33,7 +33,7 @@ eksctl utils associate-iam-oidc-provider --cluster=EKSCluster --region $region -
 ### 2. Create EBS CNI Role
 Replace `$cluster` to your custom
 ```
-eksctl create iamserviceaccount --name ebs-csi-controller-sa --namespace kube-system --cluster $cluster --role-name AmazonEKS_EBS_CSI_DriverRole --role-only --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy --approve 
+eksctl create iamserviceaccount --name ebs-csi-controller-sa --namespace kube-system --cluster EKSCluster --role-name AmazonEKS_EBS_CSI_DriverRole --role-only --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy --approve 
 ```
 ### 3. Add addons
 Replace and `YOUR_AWS_ACCOUNT` to your custom
