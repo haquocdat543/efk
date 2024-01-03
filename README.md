@@ -5,11 +5,12 @@ This is a demonstration of monitoring on EKS cluster using EFK stack
 * [awscli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 * [config-profile](https://docs.aws.amazon.com/cli/latest/reference/configure/)
 * [kubectl](https://kubernetes.io/docs/tasks/tools/)
+* [eksctl](https://eksctl.io/installation/)
 # Start
 ## 1. Clone repo
 ```
-git clone https://github.com/haquocdat543/aws-cicd.git
-cd aws-cicd
+git clone https://github.com/haquocdat543/efk.git
+cd efk
 ```
 ## 2. Initiaize
 ### 1. k8s cluster
@@ -73,7 +74,7 @@ kubectl apply -f fluentd.yaml
 kubectl config set-context --current --namespace kube-logging
 kubectl get svc
 ```
-copy kibana loadbalancer dns and paste it in your browser: `<dns>:5601`
+copy kibana loadbalancer dns and paste it in your browser: `<loadbalancer-dns>:5601`
 
 
 ## 5. Destroy
