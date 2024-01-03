@@ -8,7 +8,7 @@ metadata:
 spec:
   selector:
     app: elasticsearch
-  type: ClusterIP
+  type: LoadBalancer
   ports:
     - protocol: TCP
       port: 9200
