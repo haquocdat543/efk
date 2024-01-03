@@ -40,7 +40,43 @@ Replace and `YOUR_AWS_ACCOUNT` to your custom
 ```
 aws eks create-addon --cluster-name EKSCluster --addon-name aws-ebs-csi-driver --service-account-role-arn arn:aws:iam::YOUR_AWS_ACCOUNT_ID:role/AmazonEKS_EBS_CSI_DriverRole
 ```
-## 4. Destroy
+## 4. Deploy k8s resources
+### 1. Namespace
+```
+kubectl apply -f namespace.yaml
+```
+### 2. Elasticseach
+service:
+```
+kubectl apply -f elasticsearch-svc.yaml
+```
+statefulset
+```
+kubectl apply -f elasticsearch.yaml
+```
+
+### 3. Kibana
+service:
+```
+kubectl apply -f kibana-svc.yaml
+```
+statefulset
+```
+kubectl apply -f kibana.yaml
+```
+### 4. Fluentd
+```
+kubectl apply -f fluentd.yaml
+```
+### 5. Access Kibana
+```
+kubectl config set-context --current --namespace kube-logging
+kubectl get svc
+```
+copy kibana loadbalancer dns and paste it in your browser: `<dns>:5601`
+
+
+## 5. Destroy
 ### 1. Delete k8s resources
 ```
 kubectl delete namespace kube-logging
